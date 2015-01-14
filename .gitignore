@@ -46,6 +46,7 @@ Icon
 /node_modules
 
 # Bower components
+bower_components/
 /src/bower_components
 /src/js/bundled.js
 /src/lib/
@@ -57,3 +58,6 @@ Icon
 
 #log
 *.log
+
+#temp
+.tmp/
