@@ -4,34 +4,39 @@
 
 'use strict';
 
-exports.AppCtrl = function($scope, $timeout, $mdSidenav, $log) {
-  $scope.toggleLeft = function() {
-    $mdSidenav('left').toggle()
-      .then(function(){
-        $log.debug("toggle left is done");
-      });
-  };
-  $scope.toggleRight = function() {
-    $mdSidenav('right').toggle()
-      .then(function(){
-        $log.debug("toggle RIGHT is done");
-      });
-  };
-};
-exports.LeftCtrl =  function($scope, $timeout, $mdSidenav, $log) {
-  $scope.close = function() {
-    $mdSidenav('left').close()
-      .then(function(){
-        $log.debug("close LEFT is done");
-      });
-  };
-};
+module.exports = function SidenavCtrl($scope, $location, $mdSidenav, $timeout, $rootScope, Menu, Hosts) {
+  $scope.menu = Menu;
 
-exports.RightCtrl = function($scope, $timeout, $mdSidenav, $log) {
-    $scope.close = function() {
-      $mdSidenav('right').close()
-        .then(function(){
-          $log.debug("close RIGHT is done");
-        });
-    };
+  var mainContentArea = document.querySelector('[role="main"]');
+
+  $rootScope.$on('$locationChangeSuccess', openPage);
+
+  $scope.closeMenu = function() {
+    $timeout(function() { $mdSidenav('left').close(); });
+  };
+
+  $scope.openMenu = function() {
+    $timeout(function() { $mdSidenav('left').open(); });
+  };
+
+  $scope.host = Hosts.getCurrentHostUrl();
+
+  $rootScope.$on('$hostChangeSuccess', function (e, data) {
+    $scope.host = Hosts.getCurrentHostUrl(data);
+  });
+
+  $scope.path = function() {
+    return $location.path();
+  };
+
+  $scope.goHome = function() {
+    $scope.menu.selectSection(null);
+    $scope.menu.selectPage(null, null);
+    $location.path( '/' );
+  };
+
+  function openPage() {
+    $scope.closeMenu();
+    mainContentArea && mainContentArea.focus();
+  }
 };

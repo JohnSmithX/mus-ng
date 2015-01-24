@@ -28,7 +28,7 @@ gulp.task('browser-sync', function() {
 
 
 // Dev task
-gulp.task('dev', ['clean', 'views', 'styles', 'lint', 'browserify'], function() { });
+gulp.task('dev', ['clean', 'views', 'styles', 'images', 'lint', 'browserify']);
 
 // Clean task
 gulp.task('clean', function() {
@@ -55,6 +55,12 @@ gulp.task('styles', function() {
     .pipe(reload({stream:true}));
 });
 
+//Images task
+gulp.task('images', function () {
+  gulp.src('app/images/**')
+    .pipe(gulp.dest('dist/images/'));
+});
+
 // Browserify task
 gulp.task('browserify', function() {
   // Single point of entry (make sure not to src ALL your files, browserify will figure it out)
@@ -67,9 +73,9 @@ gulp.task('browserify', function() {
         path: './bower_components/angular/angular.js',
         exports: 'angular'
       },
-      'angular-route': {
-        path: './bower_components/angular-route/angular-route.js',
-        exports: 'ngRoute',
+      'angular-resource': {
+        path: './bower_components/angular-resource/angular-resource.js',
+        exports: 'ngResource',
         depends: {
           angular: 'angular'
         }
