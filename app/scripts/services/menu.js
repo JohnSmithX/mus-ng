@@ -98,6 +98,7 @@ module.exports = function menu ($rootScope, $location) {
   $rootScope.$on('$locationChangeSuccess', onLocationChange);
 
   return menuServer;
-};
+}
+
 
 

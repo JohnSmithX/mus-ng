@@ -4,7 +4,7 @@
 
 'use strict';
 
-module.exports = function SidenavCtrl($scope, $location, $mdSidenav, $timeout, $rootScope, Menu, Hosts) {
+function SidenavCtrl($scope, $location, $mdSidenav, $timeout, $rootScope, Menu, Hosts) {
   $scope.menu = Menu;
 
   var mainContentArea = document.querySelector('[role="main"]');
@@ -39,4 +39,10 @@ module.exports = function SidenavCtrl($scope, $location, $mdSidenav, $timeout, $
     $scope.closeMenu();
     mainContentArea && mainContentArea.focus();
   }
+}
+
+module.exports = function(angular) {
+  angular.module('mus.sidenav', [])
+    .controller('SidenavCtrl',['$scope', '$location', '$mdSidenav', '$timeout', '$rootScope', 'Menu', 'Hosts', SidenavCtrl]);
 };
+

@@ -2,7 +2,7 @@
 'use strict';
 
 module.exports = function hosts ($resource) {
-  var res = $resource('/api/hosts/:Id', {
+  var res = $resource('/api/servers/:Id', {
     Id: '@Id'
   }, {
     delete: {
@@ -24,4 +24,7 @@ module.exports = function hosts ($resource) {
   };
   return res;
 };
+
+
+
 

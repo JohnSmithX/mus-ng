@@ -61,7 +61,7 @@
     <md-toolbar layout="column" ng-click="openMenu()" class="md-default-theme md-toolbar-tools" flex>
       <md-list layout="row" layout-align="left center" flex>
 
-        <md-item style="position: absolute; right: 26px;" hide-sm>
+        <md-item style="float:right; right: 26px;" hide-sm>
           <md-item-content>
             <div>Login</div>
           </md-item-content>
@@ -79,7 +79,7 @@
           <md-item-content layout-align="left center" flex>
             <div>
               <a href="" ng-href="#{{menu.breadcrumbUrl($index)}}">
-                {{(breadcrumb.name || breadcrumb) }}
+                {{(breadcrumb.name || breadcrumb) | unescape }}
               </a>
             </div>
             <div ng-if="$index < menu.breadcrumbs.length - 1" class="menu-separator-icon" style="padding-right: 3px; padding-left: 3px;">
