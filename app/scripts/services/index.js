@@ -8,7 +8,7 @@ var hosts = require('./hosts');
 var menu  = require('./menu');
 
 module.exports = function (angular) {
-  angular.module('mus.services', [])
+  angular.module('mus.services', ['ngResource'])
     .factory('Hosts', ['$resource', hosts])
     .factory('Menu', ['$rootScope', '$location', menu]);
 };
