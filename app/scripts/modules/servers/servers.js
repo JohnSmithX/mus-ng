@@ -8,21 +8,21 @@
 
 
 module.exports = function (angular) {
-  angular.module('servers.ctrl', [])
+  angular.module('mus.servers.ctrl', [])
     .config(['$stateProvider',
       function ($stateProvider) {
         $stateProvider.
           state('servers', {
             url: '/servers',
-            templateUrl: '/js/templates/servers/servers.tpl.html'
+            templateUrl: 'js/templates/servers/servers.tpl.html'
           })
           .state('server', {
             url: '/servers/:Id',
-            templateUrl: '/js/templates/servers/server.tpl.html'
+            templateUrl: 'js/templates/servers/server.tpl.html'
           })
           .state('serverLogs', {
             url: '/containers/{Id}/logs',
-            templateUrl: '/js/templates/servers/server.logs.tpl.html'
+            templateUrl: 'js/templates/servers/server.logs.tpl.html'
           });
       }
     ]);

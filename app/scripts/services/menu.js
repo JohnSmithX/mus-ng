@@ -7,8 +7,8 @@ function escape(s) {
 
 var sections = [
   {
-    name: 'Severs',
-    url: '/severs'
+    name: 'Servers',
+    url: '/servers'
   },
   {
     name: 'Charts',

@@ -80,6 +80,13 @@ gulp.task('browserify', function() {
           angular: 'angular'
         }
       },
+      'angular-ui-router': {
+        path: './bower_components/angular-ui-router/release/angular-ui-router.js',
+        exports: 'uiRouter',
+        depends: {
+          angular: 'angular'
+        }
+      },
       'angular-animate': {
         path: './bower_components/angular-animate/angular-animate.js',
         exports: 'ngAnimate',
@@ -132,6 +139,10 @@ gulp.task('views', function() {
   // Will be put in the dist/views folder
     .pipe(gulp.dest('dist/views/'))
     .pipe(reload({stream:true}));
+
+  gulp.src('app/scripts/templates/**/*')
+    .pipe(gulp.dest('dist/js/templates/'))
+    .pipe(reload({stream:true}));
 });
 
 gulp.task('reload', function () {
@@ -153,7 +164,7 @@ gulp.task('watch', ['browser-sync'], function() {
     'styles'
   ]);
 
-  gulp.watch(['app/**/*.html'], [
+  gulp.watch(['app/**/*.html', 'app/scripts/templates/**/*.html'], [
     'views'
   ]);
 
